@@ -6,18 +6,18 @@ fn main() {
     
     let mut input = String::new();
 
-    println!("Introdu elementele vectorului, separate prin spații");
+    println!("Enter elements of vector, separated by spaces");
     
     // Read the input in string
     std::io::stdin()
         .read_line(&mut input)
-        .expect("Eroare la citirea linei!");
+        .expect("Error reading the line");
 
     // Parse the string
     let mut vect: Vec<i32> = input
         .trim()
         .split_whitespace()
-        .map(|x| x.parse::<i32>().expect("Elementul nu este un numar intreg valid"))
+        .map(|x| x.parse::<i32>().expect("not a valid integer!"))
         .collect();
 
     selection_sort(&mut vect);
@@ -25,7 +25,7 @@ fn main() {
     quicksort(&mut vect, 0, n - 1);
 
     // Print elements of vector
-    println!("Elementele vectorului sortat: {:?}", vect);
+    println!("Elements of sorted vector: {:?}", vect);
 }
 
 fn selection_sort (vect: &mut Vec<i32>) {
