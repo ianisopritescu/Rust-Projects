@@ -41,10 +41,20 @@ fn selection_sort (vect: &mut Vec<i32>) {
 fn get_pivot (vect: &mut Vec<i32>, low: usize, high: usize) -> usize {
     let mut i = low;
 
+    let pivot = match vect.get(high) {
+        Some(v) => {v.clone()},
+        _ => {panic!("Array index {:?} out of bounds", high)}
+    };
+
     for j in  low..high {
-        if vect[j] < vect[high] {
-            vect.swap(i, j);
-            i += 1;
+        match vect.get(j) {
+            Some(v) => {
+                if v < &pivot {
+                    vect.swap(i, j);
+                    i += 1;
+                }
+            },
+            _ => {panic!("Array index {:?} for j out of bounds", j)}
         }
     }
     vect.swap(i, high);
