@@ -21,8 +21,8 @@ fn main() {
         .collect();
 
     selection_sort(&mut vect);
-    let n = vect.len();
-    quicksort(&mut vect, 0, n - 1);
+    let n = vect.len() - 1;
+    quicksort(&mut vect, 0, n);
 
     // Print elements of vector
     println!("Elements of sorted vector: {:?}", vect);
@@ -65,7 +65,9 @@ fn quicksort (vect: &mut Vec<i32>, low: usize, high: usize) {
     if low < high {
         let pivot = get_pivot(vect, low, high);
 
-        quicksort(vect, low, pivot - 1);
+        if low < pivot {
+            quicksort(vect, low, pivot - 1);
+        }
         quicksort(vect, pivot + 1, high);
     }
 }
